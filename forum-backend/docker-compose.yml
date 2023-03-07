@@ -12,4 +12,4 @@ services:
       - ./mongodb:/data/db
       - ./mongodb_config:/data/configdb
     ports:
-      - "5432:5432"
+      - "27017:27017"
