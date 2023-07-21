@@ -1,15 +1,14 @@
-version: "3.1"
-
+version: "3.7"
 services:
-  mongo:
-    image: mongo
+  postgres:
+    image: postgres:latest
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: forum
-    volumes:
-      - ./mongodb:/data/db
-      - ./mongodb_config:/data/configdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=forum
     ports:
-      - "27017:27017"
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./scripts/create-testing-db.sh:/docker-entrypoint-initdb.d/create-testing-db.sh
